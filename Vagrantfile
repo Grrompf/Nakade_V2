@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
-  config.vm.synced_folder "./", "/var/www/html/nakade", create: true, group: "www-data", owner: "www-data"
+  #config.vm.synced_folder "./", "/var/www/html/nakade", create: true, group: "www-data", owner: "www-data"
   #config.vm.synced_folder ".", "/vagrant", :disabled => true
   config.vm.synced_folder ".", "/media/vagrant-nfs",
                           :nfs => true,
@@ -77,9 +77,9 @@ Vagrant.configure("2") do |config|
     config.bindfs.bind_folder "/media/vagrant-nfs", "/vagrant",
                               :'perms' => "ug=rwX:o=rX",
                               :'force-user' => "ubuntu",
-                              :'force-group' => "ubuntu",
+                              :'force-group' => "www-data",
                               :'create-for-user' => "ubuntu",
-                              :'create-for-group' => "ubuntu",
+                              :'create-for-group' => "www-data",
                               :'create-with-perms' => "ug=rwX:o=rX",
                               :'chown-ignore' => true,
                               :'chgrp-ignore' => true,
@@ -87,6 +87,7 @@ Vagrant.configure("2") do |config|
 
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
   config.vm.provision :shell, path: "bootstrap.sh"
+
 
    # Enable SSH agent forwarding
   config.ssh.forward_agent = true

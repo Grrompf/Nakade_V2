@@ -172,17 +172,11 @@ VHOST=$(cat <<EOF
     ServerAdmin ${MAIL}
     ServerName localhost
 
-    DocumentRoot "/var/www/html/${PROJECT}/web"
-    <Directory "/var/www/html/${PROJECT}/web">
+    DirectoryIndex app_dev.php
+    DocumentRoot "/vagrant/web"
+    <Directory "/vagrant/web">
         AllowOverride All
-        Order Allow,Deny
-        Allow from All
-        <IfModule mod_rewrite.c>
-            Options -MultiViews
-            RewriteEngine On
-            RewriteCond %{REQUEST_FILENAME} !-f
-            RewriteRule ^(.*)$ app.php [QSA,L]
-        </IfModule>
+        Require all granted
     </Directory>
 
     # uncomment the following lines if you install assets as symlinks
@@ -191,7 +185,7 @@ VHOST=$(cat <<EOF
     #     Options FollowSymlinks
     # </Directory>
 
-    <Directory /var/www/html/${PROJECT}/web/bundles>
+    <Directory /vagrant/web/bundles>
         <IfModule mod_rewrite.c>
             RewriteEngine Off
         </IfModule>
