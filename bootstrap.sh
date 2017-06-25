@@ -3,7 +3,7 @@
 
 #php
 #version
-pv=7.1
+pv=7.0
 # memo: find extensions by sudo apt-cache search php7-*
 php=(php$pv php$pv-common php$pv-dev php$pv-cli)
 extensions=(php$pv-fpm php$pv-curl php$pv-gd php$pv-mcrypt php$pv-mbstring libapache2-mod-php$pv php$pv-mysql php$pv-intl php$pv-zip php$pv-json php$pv-tidy php$pv-xsl php$pv-opcache php$pv-pspell php-xdebug php-geoip php-solr php-xml)
